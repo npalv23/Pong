@@ -10,7 +10,7 @@ WIDTH, HEIGHT = 1280, 960
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # Set up asset files
-BALL_IMAGE = pygame.image.load('ball2s.png')
+#BALL_IMAGE = pygame.image.load('ball2s.png')
 
 # Set up game variables
 ball_x, ball_y = 0, 0
