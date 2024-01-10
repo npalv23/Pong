@@ -30,8 +30,6 @@ def start_the_game() -> None:
 
 mainmenu= pygame_menu.Menu("Welcome", W_WIDTH, W_HEIGHT, theme=themes.THEME_SOLARIZED)
 userName = mainmenu.add.text_input('Name: ', default='Avatar')
-loading = pygame_menu.Menu("Loading the Game", W_WIDTH, W_HEIGHT, theme=themes.THEME_ORANGE)
-loading.add.progress_bar('Progress', prgressbar_id='1', default=0, width = 200)
 
 
 mainmenu.add.button('Play', start_the_game)
