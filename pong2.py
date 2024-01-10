@@ -55,7 +55,7 @@ def play_function(difficulty: List, font: 'pygame.font.Font', test: bool = False
     paddle1_y=HEIGHT/2-paddle_h/2
     paddle2_y=HEIGHT/2-paddle_h/2
 
-    ball_x, ball_y = random.randint(paddle_w+margin_x+BALL_RADIUS+2, 200), random.randint(margin_x+BALL_RADIUS+2, 100)
+    ball_x, ball_y = random.randint(paddle_w+margin_x+BALL_RADIUS+2, WIDTH-margin_x-paddle_w), random.randint(margin_x+BALL_RADIUS+2, HEIGHT -margin_y-paddle_h)
 
     color=(90,100,12)
 
@@ -86,12 +86,14 @@ def play_function(difficulty: List, font: 'pygame.font.Font', test: bool = False
         ny=ball_y+speed_y
 
         if nx<margin_x + paddle_w+BALL_RADIUS :
-            if ny<paddle1_y or ny >paddle1_y+paddle_h:
-                main_menu.enable()
-                return
-            
-            nx=margin_x + paddle_w+BALL_RADIUS
-            speed_x = speed_x*-1
+            if ny<paddle1_y or ny >paddle1_y+paddle_h: 
+                if nx < -BALL_RADIUS:
+                    main_menu.enable()
+                    return
+            else:
+                nx=margin_x + paddle_w+BALL_RADIUS
+                speed_x = speed_x*-1
+
 
         elif nx>WIDTH-margin_x-paddle_w-BALL_RADIUS:
             nx=WIDTH-margin_x-paddle_w-BALL_RADIUS
@@ -116,7 +118,6 @@ def play_function(difficulty: List, font: 'pygame.font.Font', test: bool = False
             paddle1_y=min(paddle1_y, HEIGHT-paddle_h)
 
         if  speed_x > 0 and ball_x > WIDTH - WIDTH // 4:
-            #paddle2_y=min(HEIGHT-paddle_h-5, ball_y-random.randint(1,paddle_h // 2))
             paddle2_y=min(HEIGHT-paddle_h-margin_y, ball_y-paddle_h // 2)
 
         surface.fill((0, 0, 0))
